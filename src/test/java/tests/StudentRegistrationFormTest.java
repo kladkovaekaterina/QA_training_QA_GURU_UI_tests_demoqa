@@ -1,5 +1,5 @@
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
+package tests;
+
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
@@ -7,19 +7,11 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 // demoqa
-public class StudentRegistrationFormTest {
+public class StudentRegistrationFormTest extends TestBase {
 
-    @BeforeAll
-    static void beforeAll() {
-        Configuration.browserSize = "1920x1080";
-        Configuration.browser = "firefox";
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.pageLoadStrategy = "eager";
-        //Configuration.holdBrowserOpen = true;
-    }
-
+    // проверка заполнения всех полей
     @Test
-    void fillFormTest() {
+    void successfulFillFormTest() {
         // Open form
         open("/automation-practice-form");
         executeJavaScript("$('#fixedban').remove()");
@@ -73,4 +65,65 @@ public class StudentRegistrationFormTest {
         $(".table-responsive").shouldHave(text("Ulitsa Pushkina, dom Kolotushkina"));
         $(".table-responsive").shouldHave(text("Uttar Pradesh Agra"));
     }
+
+    // проверка минимального количества данных
+    @Test
+    void minimumSuccessfulFillFormTest() {
+        // Open form
+        open("/automation-practice-form");
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
+
+        // Insert data
+        // Name
+        $("#firstName").setValue("aaa");
+        $("#lastName").setValue("bbb");
+        // Gender
+        $("#genterWrapper").$(byText("Female")).click();
+        // Mobile
+        $("#userNumber").setValue("1234567890");
+        // Date of Birth
+        $("#dateOfBirthInput").click();
+        $(".react-datepicker__month-select").selectOptionContainingText("June");
+        $(".react-datepicker__year-select").selectOptionContainingText("1992");
+        $(".react-datepicker__day--004").click();
+        // Submit
+        $("#submit").click();
+
+        // Check results
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+        $(".table-responsive").shouldHave(text("aaa bbb"));
+        $(".table-responsive").shouldHave(text("Female"));
+        $(".table-responsive").shouldHave(text("1234567890"));
+        $(".table-responsive").shouldHave(text("04 June,1992"));
+    }
+
+    // негативная проверка (Mobile not 10 Digits)
+    @Test
+    void unsuccessfulFillFormTest() {
+        // Open form
+        open("/automation-practice-form");
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
+
+        // Insert data
+        // Name
+        $("#firstName").setValue("aaa");
+        $("#lastName").setValue("bbb");
+        // Gender
+        $("#genterWrapper").$(byText("Female")).click();
+        // Mobile
+        $("#userNumber").setValue("123456789");
+        // Date of Birth
+        $("#dateOfBirthInput").click();
+        $(".react-datepicker__month-select").selectOptionContainingText("June");
+        $(".react-datepicker__year-select").selectOptionContainingText("1992");
+        $(".react-datepicker__day--004").click();
+        // Submit
+        $("#submit").click();
+
+        // Check results
+        $("[class]").shouldNotHave((text("Thanks for submitting the form")));
+    }
+
 }

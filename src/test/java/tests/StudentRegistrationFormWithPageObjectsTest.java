@@ -20,7 +20,7 @@ public class StudentRegistrationFormWithPageObjectsTest extends TestBase {
                 .setUserEmail("ccc@ddd.ru")
                 .setGender("Female")
                 .setMobile("1234567890")
-                .setDateOfBirth("04", "June", "1992")
+                .setDateOfBirth("30", "July", "2008")
                 .setSubjects("eng", "English")
                 .setSubjects("com", "Computer Science")
                 .setHobbies("Music")
@@ -35,7 +35,7 @@ public class StudentRegistrationFormWithPageObjectsTest extends TestBase {
                 .checkSubmitResultPos("Student Email", "ccc@ddd.ru")
                 .checkSubmitResultPos("Gender", "Female")
                 .checkSubmitResultPos("Mobile", "1234567890")
-                .checkSubmitResultPos("Date of Birth", "04 June,1992")
+                .checkSubmitResultPos("Date of Birth", "30 July,2008")
                 .checkSubmitResultPos("Subjects", "English, Computer Science")
                 .checkSubmitResultPos("Hobbies", "Music")
                 .checkSubmitResultPos("Picture", "picture.JPG")
@@ -54,14 +54,14 @@ public class StudentRegistrationFormWithPageObjectsTest extends TestBase {
                 .setLastName("bbb")
                 .setGender("Female")
                 .setMobile("1234567890")
-                .setDateOfBirth("04", "June", "1992")
+                .setDateOfBirth("30", "July", "2008")
                 .submitForm()
 
         // Check results
                 .checkSubmitResultPos("Student Name", "aaa bbb")
                 .checkSubmitResultPos("Gender", "Female")
                 .checkSubmitResultPos("Mobile", "1234567890")
-                .checkSubmitResultPos("Date of Birth", "04 June,1992");
+                .checkSubmitResultPos("Date of Birth", "30 July,2008");
     }
 
     // негативная проверка (Mobile not 10 Digits)
@@ -75,7 +75,7 @@ public class StudentRegistrationFormWithPageObjectsTest extends TestBase {
                 .setLastName("bbb")
                 .setGender("Female")
                 .setMobile("123456789")
-                .setDateOfBirth("04", "June", "1992")
+                .setDateOfBirth("30", "July", "2008")
                 .submitForm()
 
         // Check results

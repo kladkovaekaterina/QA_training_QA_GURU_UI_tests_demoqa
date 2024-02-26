@@ -2,7 +2,7 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
-import pages.components.CheckResults;
+import pages.components.TableResultComponent;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.text;
@@ -30,7 +30,7 @@ public class StudentRegistrationFormPage {
             checkResultNeg = $("[class]");
 
     CalendarComponent calendarComponent = new CalendarComponent();
-    CheckResults checkResults = new CheckResults();
+    TableResultComponent tableResultComponent = new TableResultComponent();
 
     // Open form
     public StudentRegistrationFormPage openPage() {
@@ -138,7 +138,7 @@ public class StudentRegistrationFormPage {
     // Check results
     public StudentRegistrationFormPage checkSubmitResultPos(String key, String value) {
         checkResultPos.shouldHave(exactText("Thanks for submitting the form"));
-        checkResults.checkResult(key, value);
+        tableResultComponent.checkResult(key, value);
 
         return this;
     }

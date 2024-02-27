@@ -41,7 +41,7 @@ public class StudentRegistrationFormTest extends TestBase {
         // Hobbies
         $("#hobbiesWrapper").$(byText("Music")).click();
         // Picture
-        $("#uploadPicture").uploadFromClasspath("picture.JPG");
+        $("#uploadPicture").uploadFromClasspath("picture0.JPG");
         // Current Address
         $("#currentAddress").setValue("Ulitsa Pushkina, dom Kolotushkina");
         // State and City
@@ -61,7 +61,7 @@ public class StudentRegistrationFormTest extends TestBase {
         $(".table-responsive").shouldHave(text("04 June,1992"));
         $(".table-responsive").shouldHave(text("English, Computer Science"));
         $(".table-responsive").shouldHave(text("Music"));
-        $(".table-responsive").shouldHave(text("picture.JPG"));
+        $(".table-responsive").shouldHave(text("picture0.JPG"));
         $(".table-responsive").shouldHave(text("Ulitsa Pushkina, dom Kolotushkina"));
         $(".table-responsive").shouldHave(text("Uttar Pradesh Agra"));
     }

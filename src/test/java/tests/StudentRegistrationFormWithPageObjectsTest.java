@@ -21,10 +21,10 @@ public class StudentRegistrationFormWithPageObjectsTest extends TestBase {
                 .setGender("Female")
                 .setMobile("1234567890")
                 .setDateOfBirth("30", "July", "2008")
-                .setSubjects("eng", "English")
-                .setSubjects("com", "Computer Science")
+                .setSubjects("English")
+                .setSubjects("Computer Science")
                 .setHobbies("Music")
-                .setPicture("picture.JPG")
+                .setPicture("picture0.JPG")
                 .setCurrentAddress("Ulitsa Pushkina, dom Kolotushkina")
                 .setState("Uttar Pradesh")
                 .setCity("Agra")
@@ -38,7 +38,7 @@ public class StudentRegistrationFormWithPageObjectsTest extends TestBase {
                 .checkSubmitResultPos("Date of Birth", "30 July,2008")
                 .checkSubmitResultPos("Subjects", "English, Computer Science")
                 .checkSubmitResultPos("Hobbies", "Music")
-                .checkSubmitResultPos("Picture", "picture.JPG")
+                .checkSubmitResultPos("Picture", "picture0.JPG")
                 .checkSubmitResultPos("Address", "Ulitsa Pushkina, dom Kolotushkina")
                 .checkSubmitResultPos("State and City", "Uttar Pradesh Agra");
     }

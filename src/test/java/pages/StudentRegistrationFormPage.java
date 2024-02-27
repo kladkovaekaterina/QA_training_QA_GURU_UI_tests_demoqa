@@ -17,8 +17,7 @@ public class StudentRegistrationFormPage {
             genderInput = $("#genterWrapper"),
             mobileInput = $("#userNumber"),
             dateOfBirthInput = $("#dateOfBirthInput"),
-            subjectsInput = $(".subjects-auto-complete__value-container"),
-            subjectInputValues = $("#subjectsInput"),
+            subjectInput = $("#subjectsInput"),
             hobbiesInput = $("#hobbiesWrapper"),
             pictureUpload = $("#uploadPicture"),
             currentAddressInput = $("#currentAddress"),
@@ -84,10 +83,8 @@ public class StudentRegistrationFormPage {
     }
 
     // Subjects
-    public StudentRegistrationFormPage setSubjects(String short_value, String full_value) {
-        subjectsInput.click();
-        subjectInputValues.press(short_value);
-        $(byText(full_value)).click();
+    public StudentRegistrationFormPage setSubjects(String value) {
+        subjectInput.setValue(value).pressEnter();
 
         return this;
     }

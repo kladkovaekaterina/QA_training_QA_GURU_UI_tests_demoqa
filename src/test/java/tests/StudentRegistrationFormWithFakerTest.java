@@ -2,13 +2,13 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 import pages.StudentRegistrationFormPage;
-
-import static utils.RandomUtils.*;
+import utils.RandomUtils;
 
 // demoqa
 public class StudentRegistrationFormWithFakerTest extends TestBase {
 
     StudentRegistrationFormPage studentRegistrationFormPage = new StudentRegistrationFormPage();
+    RandomUtils randomUtils = new RandomUtils();
 
     // проверка заполнения всех полей
     @Test
@@ -18,31 +18,31 @@ public class StudentRegistrationFormWithFakerTest extends TestBase {
         studentRegistrationFormPage.openPage()
 
         // Insert data
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setUserEmail(userEmail)
-                .setGender(gender)
-                .setMobile(mobile)
-                .setDateOfBirth(birthDay, birthMonth, birthYear)
-                .setSubjects(subject)
-                .setHobbies(hobbies)
-                .setPicture(picture)
-                .setCurrentAddress(currentAddress)
-                .setState(state)
-                .setCity(city)
+                .setFirstName(randomUtils.firstName)
+                .setLastName(randomUtils.lastName)
+                .setUserEmail(randomUtils.userEmail)
+                .setGender(randomUtils.gender)
+                .setMobile(randomUtils.mobile)
+                .setDateOfBirth(randomUtils.birthDay, randomUtils.birthMonth, randomUtils.birthYear)
+                .setSubjects(randomUtils.subject)
+                .setHobbies(randomUtils.hobbies)
+                .setPicture(randomUtils.picture)
+                .setCurrentAddress(randomUtils.currentAddress)
+                .setState(randomUtils.state)
+                .setCity(randomUtils.city)
                 .submitForm()
 
         // Check results
-                .checkSubmitResultPos("Student Name", firstName + ' ' + lastName)
-                .checkSubmitResultPos("Student Email", userEmail)
-                .checkSubmitResultPos("Gender", gender)
-                .checkSubmitResultPos("Mobile", mobile)
-                .checkSubmitResultPos("Date of Birth", birthDay + ' ' + birthMonth + ',' + birthYear)
-                .checkSubmitResultPos("Subjects", subject)
-                .checkSubmitResultPos("Hobbies", hobbies)
-                .checkSubmitResultPos("Picture", picture)
-                .checkSubmitResultPos("Address", currentAddress)
-                .checkSubmitResultPos("State and City", state + ' ' + city);
+                .checkSubmitResultPos("Student Name", randomUtils.firstName + ' ' + randomUtils.lastName)
+                .checkSubmitResultPos("Student Email", randomUtils.userEmail)
+                .checkSubmitResultPos("Gender", randomUtils.gender)
+                .checkSubmitResultPos("Mobile", randomUtils.mobile)
+                .checkSubmitResultPos("Date of Birth", randomUtils.birthDay + ' ' + randomUtils.birthMonth + ',' + randomUtils.birthYear)
+                .checkSubmitResultPos("Subjects", randomUtils.subject)
+                .checkSubmitResultPos("Hobbies", randomUtils.hobbies)
+                .checkSubmitResultPos("Picture", randomUtils.picture)
+                .checkSubmitResultPos("Address", randomUtils.currentAddress)
+                .checkSubmitResultPos("State and City", randomUtils.state + ' ' + randomUtils.city);
     }
 
     // проверка минимального количества данных
@@ -52,18 +52,18 @@ public class StudentRegistrationFormWithFakerTest extends TestBase {
         studentRegistrationFormPage.openPage()
 
         // Insert data
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setGender(gender)
-                .setMobile(mobile)
-                .setDateOfBirth(birthDay, birthMonth, birthYear)
+                .setFirstName(randomUtils.firstName)
+                .setLastName(randomUtils.lastName)
+                .setGender(randomUtils.gender)
+                .setMobile(randomUtils.mobile)
+                .setDateOfBirth(randomUtils.birthDay, randomUtils.birthMonth, randomUtils.birthYear)
                 .submitForm()
 
         // Check results
-                .checkSubmitResultPos("Student Name", firstName + ' ' + lastName)
-                .checkSubmitResultPos("Gender", gender)
-                .checkSubmitResultPos("Mobile", mobile)
-                .checkSubmitResultPos("Date of Birth", birthDay + ' ' + birthMonth + ',' + birthYear);
+                .checkSubmitResultPos("Student Name", randomUtils.firstName + ' ' + randomUtils.lastName)
+                .checkSubmitResultPos("Gender", randomUtils.gender)
+                .checkSubmitResultPos("Mobile", randomUtils.mobile)
+                .checkSubmitResultPos("Date of Birth", randomUtils.birthDay + ' ' + randomUtils.birthMonth + ',' + randomUtils.birthYear);
     }
 
     // негативная проверка (Mobile not 10 Digits)
@@ -73,11 +73,11 @@ public class StudentRegistrationFormWithFakerTest extends TestBase {
         studentRegistrationFormPage.openPage()
 
         // Insert data
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setGender(gender)
-                .setMobile(mobile.substring(0,9))
-                .setDateOfBirth(birthDay, birthMonth, birthYear)
+                .setFirstName(randomUtils.firstName)
+                .setLastName(randomUtils.lastName)
+                .setGender(randomUtils.gender)
+                .setMobile(randomUtils.mobile.substring(0,9))
+                .setDateOfBirth(randomUtils.birthDay, randomUtils.birthMonth, randomUtils.birthYear)
                 .submitForm()
 
         // Check results

@@ -3,6 +3,7 @@ package utils;
 import com.github.javafaker.Faker;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 public class RandomUtils {
@@ -12,14 +13,16 @@ public class RandomUtils {
     SimpleDateFormat sdfMonth = new SimpleDateFormat("MMMM", new Locale("en"));
     SimpleDateFormat sdfYear = new SimpleDateFormat("yyyy");
 
+    public Date randomlyGerenatedBirthDate = faker.date().birthday();
+
     public String firstName = generateRandomFirstName(),
             lastName = generateRandomLastName(),
             userEmail = generateRandomUserEmail(),
             gender = generateRandomGender(),
             mobile = generateRandomMobile(),
-            birthDay = generateRandomBirthDay(),
-            birthMonth = generateRandomBirthMonth(),
-            birthYear = generateRandomBirthYear(),
+            birthDay = generateRandomBirthDay(randomlyGerenatedBirthDate),
+            birthMonth = generateRandomBirthMonth(randomlyGerenatedBirthDate),
+            birthYear = generateRandomBirthYear(randomlyGerenatedBirthDate),
             subject = generateRandomSubject(),
             hobbies = generateRandomHobbies(),
             picture = generateRandomPicture(),
@@ -57,20 +60,20 @@ public class RandomUtils {
         return mobile;
     }
 
-    public String generateRandomBirthDay() {
-        birthDay = sdfDay.format(faker.date().birthday());
+    public String generateRandomBirthDay(Date randomlyGerenatedBirthDate) {
+        birthDay = sdfDay.format(randomlyGerenatedBirthDate);
 
         return birthDay;
     }
 
-    public String generateRandomBirthMonth() {
-        birthMonth = sdfMonth.format(faker.date().birthday());
+    public String generateRandomBirthMonth(Date randomlyGerenatedBirthDate) {
+        birthMonth = sdfMonth.format(randomlyGerenatedBirthDate);
 
         return birthMonth;
     }
 
-    public String generateRandomBirthYear() {
-        birthYear = sdfYear.format(faker.date().birthday());
+    public String generateRandomBirthYear(Date randomlyGerenatedBirthDate) {
+        birthYear = sdfYear.format(randomlyGerenatedBirthDate);
 
         return birthYear;
     }

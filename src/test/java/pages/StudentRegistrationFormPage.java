@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import pages.components.CalendarComponent;
 import pages.components.TableResultComponent;
 

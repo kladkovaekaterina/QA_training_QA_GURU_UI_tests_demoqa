@@ -1,87 +1,94 @@
 package tests;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.StudentRegistrationFormPage;
 import utils.RandomUtils;
 
-// demoqa
+import static io.qameta.allure.Allure.step;
+
+@Tag("demoqa")
+@DisplayName("Проверка заполнения формы automation-practice-form")
 public class StudentRegistrationFormWithFakerTest extends TestBase {
 
     StudentRegistrationFormPage studentRegistrationFormPage = new StudentRegistrationFormPage();
     RandomUtils randomUtils = new RandomUtils();
 
-    // проверка заполнения всех полей
     @Test
+    @DisplayName("Проверка заполнения всех полей")
     void successfulFillFormTest() {
-
-        // Open form
-        studentRegistrationFormPage.openPage()
-
-        // Insert data
-                .setFirstName(randomUtils.firstName)
-                .setLastName(randomUtils.lastName)
-                .setUserEmail(randomUtils.userEmail)
-                .setGender(randomUtils.gender)
-                .setMobile(randomUtils.mobile)
-                .setDateOfBirth(randomUtils.birthDay, randomUtils.birthMonth, randomUtils.birthYear)
-                .setSubjects(randomUtils.subject)
-                .setHobbies(randomUtils.hobbies)
-                .setPicture(randomUtils.picture)
-                .setCurrentAddress(randomUtils.currentAddress)
-                .setState(randomUtils.state)
-                .setCity(randomUtils.city)
-                .submitForm()
-
-        // Check results
-                .checkSubmitResultPos("Student Name", randomUtils.firstName + ' ' + randomUtils.lastName)
-                .checkSubmitResultPos("Student Email", randomUtils.userEmail)
-                .checkSubmitResultPos("Gender", randomUtils.gender)
-                .checkSubmitResultPos("Mobile", randomUtils.mobile)
-                .checkSubmitResultPos("Date of Birth", randomUtils.birthDay + ' ' + randomUtils.birthMonth + ',' + randomUtils.birthYear)
-                .checkSubmitResultPos("Subjects", randomUtils.subject)
-                .checkSubmitResultPos("Hobbies", randomUtils.hobbies)
-                .checkSubmitResultPos("Picture", randomUtils.picture)
-                .checkSubmitResultPos("Address", randomUtils.currentAddress)
-                .checkSubmitResultPos("State and City", randomUtils.state + ' ' + randomUtils.city);
+        step("Open form", () -> {
+            studentRegistrationFormPage.openPage();
+        });
+        step("Insert data", () -> {
+            studentRegistrationFormPage.setFirstName(randomUtils.firstName)
+                    .setLastName(randomUtils.lastName)
+                    .setUserEmail(randomUtils.userEmail)
+                    .setGender(randomUtils.gender)
+                    .setMobile(randomUtils.mobile)
+                    .setDateOfBirth(randomUtils.birthDay, randomUtils.birthMonth, randomUtils.birthYear)
+                    .setSubjects(randomUtils.subject)
+                    .setHobbies(randomUtils.hobbies)
+                    .setPicture(randomUtils.picture)
+                    .setCurrentAddress(randomUtils.currentAddress)
+                    .setState(randomUtils.state)
+                    .setCity(randomUtils.city)
+                    .submitForm();
+        });
+        step("Check results", () -> {
+            studentRegistrationFormPage.checkSubmitResultPos("Student Name", randomUtils.firstName + ' ' + randomUtils.lastName)
+                    .checkSubmitResultPos("Student Email", randomUtils.userEmail)
+                    .checkSubmitResultPos("Gender", randomUtils.gender)
+                    .checkSubmitResultPos("Mobile", randomUtils.mobile)
+                    .checkSubmitResultPos("Date of Birth", randomUtils.birthDay + ' ' + randomUtils.birthMonth + ',' + randomUtils.birthYear)
+                    .checkSubmitResultPos("Subjects", randomUtils.subject)
+                    .checkSubmitResultPos("Hobbies", randomUtils.hobbies)
+                    .checkSubmitResultPos("Picture", randomUtils.picture)
+                    .checkSubmitResultPos("Address", randomUtils.currentAddress)
+                    .checkSubmitResultPos("State and City", randomUtils.state + ' ' + randomUtils.city);
+        });
     }
 
-    // проверка минимального количества данных
     @Test
+    @DisplayName("Проверка заполнения минимального количества полей")
     void minimumSuccessfulFillFormTest() {
-        // Open form
-        studentRegistrationFormPage.openPage()
-
-        // Insert data
-                .setFirstName(randomUtils.firstName)
+        step("Open form", () -> {
+            studentRegistrationFormPage.openPage();
+        });
+        step("Insert data", () -> {
+            studentRegistrationFormPage.setFirstName(randomUtils.firstName)
                 .setLastName(randomUtils.lastName)
                 .setGender(randomUtils.gender)
                 .setMobile(randomUtils.mobile)
                 .setDateOfBirth(randomUtils.birthDay, randomUtils.birthMonth, randomUtils.birthYear)
-                .submitForm()
-
-        // Check results
-                .checkSubmitResultPos("Student Name", randomUtils.firstName + ' ' + randomUtils.lastName)
+                .submitForm();
+        });
+        step("Check results", () -> {
+            studentRegistrationFormPage.checkSubmitResultPos("Student Name", randomUtils.firstName + ' ' + randomUtils.lastName)
                 .checkSubmitResultPos("Gender", randomUtils.gender)
                 .checkSubmitResultPos("Mobile", randomUtils.mobile)
                 .checkSubmitResultPos("Date of Birth", randomUtils.birthDay + ' ' + randomUtils.birthMonth + ',' + randomUtils.birthYear);
+        });
     }
 
-    // негативная проверка (Mobile not 10 Digits)
     @Test
+    @DisplayName("Негативная проверка (Mobile not 10 Digits)")
     void unsuccessfulFillFormTest() {
-        // Open form
-        studentRegistrationFormPage.openPage()
-
-        // Insert data
-                .setFirstName(randomUtils.firstName)
+        step("Open form", () -> {
+            studentRegistrationFormPage.openPage();
+        });
+        step("Insert data", () -> {
+            studentRegistrationFormPage.setFirstName(randomUtils.firstName)
                 .setLastName(randomUtils.lastName)
                 .setGender(randomUtils.gender)
                 .setMobile(randomUtils.mobile.substring(0,9))
                 .setDateOfBirth(randomUtils.birthDay, randomUtils.birthMonth, randomUtils.birthYear)
-                .submitForm()
-
-        // Check results
-                .checkSubmitResultNeg();
+                .submitForm();
+        });
+        step("Check results", () -> {
+            studentRegistrationFormPage.checkSubmitResultNeg();
+        });
     }
 
 }

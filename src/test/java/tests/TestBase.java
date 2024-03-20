@@ -10,13 +10,16 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.Map;
 
+import static com.codeborne.selenide.Selenide.closeWebDriver;
+
 public class TestBase {
 
     @BeforeAll
     static void beforeAll() {
         Configuration.baseUrl = "https://demoqa.com";
-        //Configuration.browser = "edge";
-        Configuration.browserSize = "1920x1080";
+        String browser = System.getProperty("browser");
+        String browserVersion = System.getProperty("browserVersion");
+        String browserSize = System.getProperty("browserSize");
         Configuration.pageLoadStrategy = "eager";
         Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
 
@@ -36,6 +39,8 @@ public class TestBase {
         Attachments.pageSource();
         Attachments.browserConsoleLogs();
         Attachments.addVideo();
+
+        closeWebDriver();
     }
 
 }

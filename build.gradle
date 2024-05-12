@@ -6,7 +6,8 @@ plugins {
 def allureVersion = "2.25.0",
     selenideVersion = "7.1.0",
     fakerVersion = "1.0.2",
-    junit5Version = "5.10.2"
+    junit5Version = "5.10.2",
+    ownerVersion = "1.0.12"
 
 allure {
     report {
@@ -31,7 +32,8 @@ dependencies {
             "com.codeborne:selenide:$selenideVersion",
             "com.github.javafaker:javafaker:$fakerVersion",
             "org.junit.jupiter:junit-jupiter:$junit5Version",
-            "io.qameta.allure:allure-selenide:$allureVersion")
+            "io.qameta.allure:allure-selenide:$allureVersion",
+            "org.aeonbits.owner:owner:$ownerVersion")
 }
 
 tasks.withType(JavaCompile) {
